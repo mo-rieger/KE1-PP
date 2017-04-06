@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+
+<BorderPane fx:controller="ke1_rieger_moritz_fx.MainViewController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem onAction="#handleSaveImageAction"  text="save image" />
+              <MenuItem onAction="#handleQuitAction"  text="Quit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Generators">
+            <items>
+              <MenuItem onAction="#handleSimplegeneratorAction" text="Simple Generator" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <ScrollPane BorderPane.alignment="CENTER">
+         <content>
+            <Canvas height="200.0" width="200.0" />
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
