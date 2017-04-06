@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.MenuBar;
 import ke1_rieger_moritz_fx.generators.*;
 
@@ -22,9 +23,9 @@ public class MainViewController implements Initializable {
     
     private HashMap<String, Generator> generators;
     
-    @FXML
-  private MenuBar menuBar;
-
+   @FXML
+    public Canvas canvas;
+   
     public MainViewController() {
         this.generators = new HashMap<String, Generator>();
     }

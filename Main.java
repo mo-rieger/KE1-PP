@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author peterorlowsky
  */
-public class KE1_Rieger_Moritz_FX extends Application {
+public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -34,5 +34,5 @@ public class KE1_Rieger_Moritz_FX extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+  
 }

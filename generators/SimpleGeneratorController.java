@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -19,8 +20,12 @@ import javafx.scene.control.MenuBar;
  */
 public class SimpleGeneratorController implements Initializable {
     
-    @FXML
-  private MenuBar menuBar;
+   @FXML
+   private TextField height;
+    
+   @FXML
+   private TextField width;
+     
   /**
    * Handle action related to "Save Image" menu item.
    * 
@@ -52,7 +57,9 @@ public class SimpleGeneratorController implements Initializable {
   @FXML
   private void handleGenerateAction(final ActionEvent event)
   {
-     System.out.println("Create Canvas");
+     System.out.println("width" + width.getCharacters());
+     //setCanvasSize(getheight(),getwidth());
+     //MainViewController.canvas.setHeight(500.0);
   }
         
     @Override
