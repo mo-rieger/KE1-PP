@@ -12,8 +12,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
@@ -70,6 +72,9 @@ public class SimpleGeneratorController implements Initializable {
      if(h.matches("[0-9]*") && w.matches("[0-9]*")){
         numericWarning.setVisible(false);
         mainController.resizeCanvas( parseInt(h), parseInt(w));
+        GraphicsContext gc = mainController.getGraphicsContext();
+        gc.setFill(Color.BLUE);
+        gc.fillOval(50, 50, 100, 100);
      } else{
          numericWarning.setVisible(true);
      }

@@ -12,7 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuBar;
+import javafx.scene.paint.Color;
 import ke1_rieger_moritz_fx.generators.*;
 
 /**
@@ -25,6 +27,7 @@ public class MainViewController implements Initializable {
        
    @FXML
     public Canvas canvas;
+   public GraphicsContext gc;
    
     public MainViewController() {
     }
@@ -65,12 +68,15 @@ public class MainViewController implements Initializable {
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       //ToDO
+        gc = canvas.getGraphicsContext2D();
     }    
     
   
     public void resizeCanvas(int height, int width){
-        this.canvas.setHeight(height);
-        this.canvas.setWidth(width);
+        canvas.setHeight(height);
+        canvas.setWidth(width);
+    }
+    public GraphicsContext getGraphicsContext(){
+        return gc;
     }
 }
