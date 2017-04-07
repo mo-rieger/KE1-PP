@@ -20,6 +20,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     
+    private final int MAX_WIDTH = 1280;
+    private final int MAX_HEIGHT = 960;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -31,8 +33,13 @@ public class Main extends Application {
         Scene scene = new Scene(root, 300, 275);
         
         stage.setTitle("KE1_Moritz_Rieger");
+        stage.setMaxHeight(MAX_WIDTH);
+        stage.setMaxWidth(MAX_HEIGHT);
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
     }
 
     /**

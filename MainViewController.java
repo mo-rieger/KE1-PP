@@ -77,8 +77,12 @@ public class MainViewController implements Initializable {
   @FXML
   private void handleSimplegeneratorAction(final ActionEvent event)
   {
-     this.simpleGenerator = SimpleGenerator.getInstance();
-     this.simpleGenerator.init(this);
+     if(simpleGenerator == null){
+        this.simpleGenerator = SimpleGenerator.getInstance();
+        this.simpleGenerator.init(this);
+     }else{
+              simpleGenerator.show();
+     }
   }
         
     @Override
@@ -92,6 +96,9 @@ public class MainViewController implements Initializable {
         canvasWidth = width;
         canvas.setHeight(canvasHeight);
         canvas.setWidth(canvasWidth);
+        primaryStage.setWidth(canvasWidth);
+        primaryStage.setHeight(canvasHeight);
+
     }
     public GraphicsContext getGraphicsContext(){
         return gc;

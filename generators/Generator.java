@@ -19,4 +19,8 @@ public class Generator{
     public void init(MainViewController aThis) {
         
     }    
+
+    public void show() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

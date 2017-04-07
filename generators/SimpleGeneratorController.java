@@ -68,13 +68,15 @@ public class SimpleGeneratorController implements Initializable {
   {
       String h = height.getText();
       String w = width.getText();
-      //validate numeric input
-     if(h.matches("[0-9]*") && w.matches("[0-9]*")){
+      // Form Validation
+      // RegEx that matches only integer and decimal numbers
+     if(h.matches("(?:\\d*\\.)?\\d+") && w.matches("(?:\\d*\\.)?\\d+")){
         numericWarning.setVisible(false);
         mainController.resizeCanvas( parseInt(h), parseInt(w));
         GraphicsContext gc = mainController.getGraphicsContext();
+        gc.clearRect(0, 0,  parseInt(w), parseInt(h));
         gc.setFill(Color.BLUE);
-        gc.fillOval(50, 50, 100, 100);
+        gc.fillOval(parseInt(w)/2, parseInt(h)/2, 50, 50);
      } else{
          numericWarning.setVisible(true);
      }

@@ -22,11 +22,12 @@ public final class SimpleGenerator extends Generator{
     
     private MainViewController mainController;
     private SimpleGeneratorController sgc;
+    private Stage stage;
     
     //implement Singleton Pattern
     private static SimpleGenerator sg = null;
     private SimpleGenerator() {
-        Stage stage = new Stage();
+        stage = new Stage();
         stage.setTitle("Simple Generator");
         
         Parent root;
@@ -37,7 +38,7 @@ public final class SimpleGenerator extends Generator{
             System.out.println(sgc);
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.show();         
+            stage.show();
 
         } catch (IOException ex) {
             Logger.getLogger(SimpleGenerator.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,8 +51,9 @@ public final class SimpleGenerator extends Generator{
         return sg;
     }
     
-    protected void test(){
-        System.out.println("heureka");
+    @Override
+    public void show(){
+        stage.show();
     }
     
     public void init(MainViewController aThis) {
