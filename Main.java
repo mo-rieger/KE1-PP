@@ -5,10 +5,13 @@
  */
 package ke1_rieger_moritz_fx;
 
+import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.WritableImage;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -17,9 +20,13 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(getClass().getResource("MainView.fxml").openStream());
+        MainViewController mc = (MainViewController) fxmlLoader.getController();
+        mc.setStage(stage);
         
         Scene scene = new Scene(root, 300, 275);
         
