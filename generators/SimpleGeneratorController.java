@@ -5,6 +5,7 @@
  */
 package ke1_rieger_moritz_fx.generators;
 
+import static java.lang.Integer.parseInt;
 import ke1_rieger_moritz_fx.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -20,11 +22,16 @@ import javafx.scene.control.TextField;
  */
 public class SimpleGeneratorController implements Initializable {
     
-   @FXML
-   private TextField height;
+    private MainViewController mainController;
     
    @FXML
+   private TextField height;
+      
+   @FXML
    private TextField width;
+   
+   @FXML
+   private Text numericWarning;
      
   /**
    * Handle action related to "Save Image" menu item.
@@ -57,14 +64,26 @@ public class SimpleGeneratorController implements Initializable {
   @FXML
   private void handleGenerateAction(final ActionEvent event)
   {
-     System.out.println("width" + width.getCharacters());
-     //setCanvasSize(getheight(),getwidth());
-     //MainViewController.canvas.setHeight(500.0);
+      String h = height.getText();
+      String w = width.getText();
+      //validate numeric input
+     if(h.matches("[0-9]*") && w.matches("[0-9]*")){
+        numericWarning.setVisible(false);
+        mainController.resizeCanvas( parseInt(h), parseInt(w));
+     } else{
+         numericWarning.setVisible(true);
+     }
+     
   }
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void init(MainViewController main){
+        mainController = main;
+    }
+    
     
 }

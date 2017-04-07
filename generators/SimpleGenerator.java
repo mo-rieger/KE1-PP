@@ -12,12 +12,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ke1_rieger_moritz_fx.MainViewController;
 
 /**
  *
  * @author Moritz Rieger
  */
 public final class SimpleGenerator extends Generator{
+    
+    private MainViewController mainController;
+    private SimpleGeneratorController sgc;
     
     //implement Singleton Pattern
     private static SimpleGenerator sg = null;
@@ -27,11 +31,13 @@ public final class SimpleGenerator extends Generator{
         
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("SimpleGeneratorView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            root = fxmlLoader.load(getClass().getResource("SimpleGeneratorView.fxml").openStream());
+            sgc = (SimpleGeneratorController) fxmlLoader.getController();
+            System.out.println(sgc);
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.show();
-            
+            stage.show();         
 
         } catch (IOException ex) {
             Logger.getLogger(SimpleGenerator.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,4 +50,12 @@ public final class SimpleGenerator extends Generator{
         return sg;
     }
     
+    protected void test(){
+        System.out.println("heureka");
+    }
+    
+    public void init(MainViewController aThis) {
+        sgc.init(aThis);
+
+    }
 }

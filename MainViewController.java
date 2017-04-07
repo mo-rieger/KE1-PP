@@ -21,13 +21,12 @@ import ke1_rieger_moritz_fx.generators.*;
  */
 public class MainViewController implements Initializable {
     
-    private HashMap<String, Generator> generators;
-    
+    private Generator simpleGenerator;
+       
    @FXML
     public Canvas canvas;
    
     public MainViewController() {
-        this.generators = new HashMap<String, Generator>();
     }
   /**
    * Handle action related to "Save Image" menu item.
@@ -60,12 +59,18 @@ public class MainViewController implements Initializable {
   @FXML
   private void handleSimplegeneratorAction(final ActionEvent event)
   {
-     generators.put("simpleGenerator", SimpleGenerator.getInstance());
+     this.simpleGenerator = SimpleGenerator.getInstance();
+     this.simpleGenerator.init(this);
   }
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       //ToDO
     }    
     
+  
+    public void resizeCanvas(int height, int width){
+        this.canvas.setHeight(height);
+        this.canvas.setWidth(width);
+    }
 }

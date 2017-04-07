@@ -35,7 +35,7 @@
          <children>
             <Label prefHeight="17.0" prefWidth="42.0" text="Höhe:" />
             <Label text="Breite:" GridPane.rowIndex="1" />
-            <TextField fx:id="heigth" GridPane.columnIndex="1" />
+            <TextField fx:id="height" GridPane.columnIndex="1" />
             <TextField fx:id="width" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <BorderPane.margin>
@@ -44,10 +44,15 @@
       </GridPane>
    </center>
    <bottom>
-      <Button mnemonicParsing="false" onAction="#handleGenerateAction" text="generate" BorderPane.alignment="CENTER_RIGHT">
-         <BorderPane.margin>
-            <Insets bottom="10.0" right="10.0" />
-         </BorderPane.margin>
-      </Button>
+      <VBox alignment="CENTER" prefHeight="84.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="numericWarning" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="only numeric values allowed!" visible="false">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Text>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleGenerateAction" text="generate" />
+         </children>
+      </VBox>
    </bottom>
 </BorderPane>

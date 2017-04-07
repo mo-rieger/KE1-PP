@@ -5,6 +5,8 @@
  */
 package ke1_rieger_moritz_fx.generators;
 
+import ke1_rieger_moritz_fx.MainViewController;
+
 /**
  *
  * @author peterorlowsky
@@ -14,5 +16,7 @@ public class Generator{
     public Generator(){
         
     }
-    
+    public void init(MainViewController aThis) {
+        
+    }    
 }
