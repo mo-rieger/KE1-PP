@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 public class SimpleGeneratorController implements Initializable {
     
     private MainViewController mainController;
+
     
    @FXML
    private TextField height;
@@ -34,6 +35,9 @@ public class SimpleGeneratorController implements Initializable {
    
    @FXML
    private Text numericWarning;
+   
+   @FXML
+   private Text state;
      
   /**
    * Handle action related to "Save Image" menu item.
@@ -71,21 +75,24 @@ public class SimpleGeneratorController implements Initializable {
       // Form Validation
       // RegEx that matches only integer and decimal numbers
      if(h.matches("(?:\\d*\\.)?\\d+") && w.matches("(?:\\d*\\.)?\\d+")){
+        state.setText("berechne");
         numericWarning.setVisible(false);
         mainController.resizeCanvas( parseInt(h), parseInt(w));
         GraphicsContext gc = mainController.getGraphicsContext();
         gc.clearRect(0, 0,  parseInt(w), parseInt(h));
         gc.setFill(Color.BLUE);
         gc.fillOval(parseInt(w)/2, parseInt(h)/2, 50, 50);
+        state.setText("fertig");
      } else{
          numericWarning.setVisible(true);
      }
+
      
   }
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        state.setText("bereit");
     }    
     
     public void init(MainViewController main){

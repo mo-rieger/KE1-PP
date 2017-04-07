@@ -55,7 +55,7 @@ public final class SimpleGenerator extends Generator{
     public void show(){
         stage.show();
     }
-    
+  
     public void init(MainViewController aThis) {
         sgc.init(aThis);
 

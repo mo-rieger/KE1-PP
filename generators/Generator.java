@@ -12,15 +12,13 @@ import ke1_rieger_moritz_fx.MainViewController;
  * @author peterorlowsky
  */
 public class Generator{
-    
     public Generator(){
-        
     }
     public void init(MainViewController aThis) {
         
     }    
 
     public void show() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 }
