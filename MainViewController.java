@@ -33,10 +33,11 @@ import ke1_rieger_moritz_fx.generators.*;
  */
 public class MainViewController implements Initializable {
     
-    private Generator simpleGenerator;
+    private SimpleGenerator simpleGenerator;
     private Stage primaryStage;
     private int canvasHeight;
     private int canvasWidth;
+    private String working_dir;
     
    @FXML
     public Canvas canvas;
@@ -53,7 +54,6 @@ public class MainViewController implements Initializable {
   @FXML
   private void handleSaveImageAction(final ActionEvent event)
   {
-     System.out.println("Here we go");
      saveImage();
     
   }
@@ -78,7 +78,7 @@ public class MainViewController implements Initializable {
   private void handleSimplegeneratorAction(final ActionEvent event)
   {
      if(simpleGenerator == null){
-        this.simpleGenerator = SimpleGenerator.getInstance();
+        this.simpleGenerator = new SimpleGenerator();
         this.simpleGenerator.init(this);
      }else{
               simpleGenerator.show();
@@ -88,6 +88,11 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gc = canvas.getGraphicsContext2D();
+        working_dir = System.getProperty("user.dir")+"/Images";
+        File dir = new File(working_dir);
+        if(!dir.exists())
+            dir.mkdir();
+
     }    
     
   
@@ -117,8 +122,12 @@ public class MainViewController implements Initializable {
                
                 //Show save file dialog
                 File file = fileChooser.showSaveDialog(primaryStage);
+                saveImage2PNG(file);
                  
-                if(file != null){
+               
+    }
+    private void saveImage2PNG(File file){
+         if(file != null){
                     try {
                         WritableImage writableImage = new WritableImage(canvasWidth, canvasHeight);
                         canvas.snapshot(null, writableImage);
@@ -128,5 +137,14 @@ public class MainViewController implements Initializable {
                         Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+    }
+    public void autoSave(int index, String name){
+        File file = new File(working_dir+"/"+name+index+".png");
+        try {
+            if(file.createNewFile())
+                saveImage2PNG(file);
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }
     }
 }

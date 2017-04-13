@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
 public class SimpleGeneratorController implements Initializable {
     
     private MainViewController mainController;
-
+    private int index;
     
    @FXML
    private TextField height;
@@ -49,6 +49,9 @@ public class SimpleGeneratorController implements Initializable {
   private void handleSaveImageAction(final ActionEvent event)
   {
      System.out.println("save Image");
+     
+     mainController.autoSave(index, "simple-Generator");
+     index++;
   }
   
     /**
@@ -97,6 +100,7 @@ public class SimpleGeneratorController implements Initializable {
     
     public void init(MainViewController main){
         mainController = main;
+        index = 0;
     }
     
     

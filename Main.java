@@ -30,7 +30,7 @@ public class Main extends Application {
         MainViewController mc = (MainViewController) fxmlLoader.getController();
         mc.setStage(stage);
         
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root, 800, 500);
         
         stage.setTitle("KE1_Moritz_Rieger");
         stage.setMaxHeight(MAX_WIDTH);

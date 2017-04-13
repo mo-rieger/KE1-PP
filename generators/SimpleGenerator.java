@@ -18,15 +18,14 @@ import ke1_rieger_moritz_fx.MainViewController;
  *
  * @author Moritz Rieger
  */
-public final class SimpleGenerator extends Generator{
+public class SimpleGenerator{
     
     private MainViewController mainController;
     private SimpleGeneratorController sgc;
     private Stage stage;
     
     //implement Singleton Pattern
-    private static SimpleGenerator sg = null;
-    private SimpleGenerator() {
+    public SimpleGenerator() {
         stage = new Stage();
         stage.setTitle("Simple Generator");
         
@@ -45,13 +44,6 @@ public final class SimpleGenerator extends Generator{
         }
     }
     
-    public static Generator getInstance() {
-        if(sg == null)
-            sg = new SimpleGenerator();
-        return sg;
-    }
-    
-    @Override
     public void show(){
         stage.show();
     }
