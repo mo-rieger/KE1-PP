@@ -16,25 +16,19 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author peterorlowsky
+ * @author Moritz Rieger
  */
 public class Main extends Application {
     
-    private final int MAX_WIDTH = 1280;
-    private final int MAX_HEIGHT = 960;
-    
     @Override
     public void start(Stage stage) throws Exception {
+        //create main window
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(getClass().getResource("MainView.fxml").openStream());
         MainViewController mc = (MainViewController) fxmlLoader.getController();
         mc.setStage(stage);
-        
         Scene scene = new Scene(root, 800, 500);
-        
         stage.setTitle("KE1_Moritz_Rieger");
-        stage.setMaxHeight(MAX_WIDTH);
-        stage.setMaxWidth(MAX_HEIGHT);
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(event -> {

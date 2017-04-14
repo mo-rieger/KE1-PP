@@ -22,6 +22,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuBar;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import javafx.stage.Stage;
@@ -29,19 +30,22 @@ import ke1_rieger_moritz_fx.generators.*;
 
 /**
  *
- * @author peterorlowsky
+ * @author Moritz Rieger
  */
 public class MainViewController implements Initializable {
     
     private SimpleGenerator simpleGenerator;
     private Stage primaryStage;
+    public GraphicsContext gc;
     private int canvasHeight;
     private int canvasWidth;
     private String working_dir;
     
    @FXML
     public Canvas canvas;
-   public GraphicsContext gc;
+   
+   @FXML
+   private Text state;
    
     public MainViewController() {
     }
@@ -54,7 +58,7 @@ public class MainViewController implements Initializable {
   @FXML
   private void handleSaveImageAction(final ActionEvent event)
   {
-     saveImage();
+     saveImageWithDialog();
     
   }
   
@@ -78,8 +82,7 @@ public class MainViewController implements Initializable {
   private void handleSimplegeneratorAction(final ActionEvent event)
   {
      if(simpleGenerator == null){
-        this.simpleGenerator = new SimpleGenerator();
-        this.simpleGenerator.init(this);
+        this.simpleGenerator = new SimpleGenerator(this);
      }else{
               simpleGenerator.show();
      }
@@ -87,32 +90,25 @@ public class MainViewController implements Initializable {
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setState("bereit");
         gc = canvas.getGraphicsContext2D();
+        //set default directory for saved images
         working_dir = System.getProperty("user.dir")+"/Images";
         File dir = new File(working_dir);
         if(!dir.exists())
             dir.mkdir();
-
     }    
     
-  
     public void resizeCanvas(int height, int width){
         canvasHeight = height;
         canvasWidth = width;
         canvas.setHeight(canvasHeight);
         canvas.setWidth(canvasWidth);
-        primaryStage.setWidth(canvasWidth);
-        primaryStage.setHeight(canvasHeight);
-
     }
-    public GraphicsContext getGraphicsContext(){
-        return gc;
-    }
-
-    public void setStage(Stage aThis) {
-     primaryStage = aThis;   
-    }
-    private void saveImage(){
+    /**
+     * Save Image as png
+     */
+    private void saveImageWithDialog(){
         FileChooser fileChooser = new FileChooser();
                  
                 //Set extension filter
@@ -138,7 +134,12 @@ public class MainViewController implements Initializable {
                     }
                 }
     }
-    public void autoSave(int index, String name){
+    /**
+     * Automatic saving for generators in default direction /Images as .png
+     * @param index increment for image sequences
+     * @param name default should be name of the generator
+     */
+    public void saveImageWithoutDialog(int index, String name){
         File file = new File(working_dir+"/"+name+index+".png");
         try {
             if(file.createNewFile())
@@ -146,5 +147,18 @@ public class MainViewController implements Initializable {
         } catch (IOException ex){
             ex.printStackTrace();
         }
+    }
+
+    // GETTER AND SETTER METHODS
+    
+    public GraphicsContext getGraphicsContext(){
+        return gc;
+    }
+
+    public void setStage(Stage aThis) {
+     primaryStage = aThis;   
+    }
+    public void setState(String msg){
+        state.setText(msg);
     }
 }

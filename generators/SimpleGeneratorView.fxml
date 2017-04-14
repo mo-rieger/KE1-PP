@@ -55,12 +55,6 @@
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin></Button>
-            <Separator prefWidth="200.0" />
-            <Text fx:id="state" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT">
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
-            </Text>
          </children>
       </VBox>
    </bottom>

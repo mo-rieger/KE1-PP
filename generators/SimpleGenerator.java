@@ -24,8 +24,8 @@ public class SimpleGenerator{
     private SimpleGeneratorController sgc;
     private Stage stage;
     
-    //implement Singleton Pattern
-    public SimpleGenerator() {
+    public SimpleGenerator(MainViewController mc) {
+        //create new window for generator
         stage = new Stage();
         stage.setTitle("Simple Generator");
         
@@ -34,7 +34,8 @@ public class SimpleGenerator{
             FXMLLoader fxmlLoader = new FXMLLoader();
             root = fxmlLoader.load(getClass().getResource("SimpleGeneratorView.fxml").openStream());
             sgc = (SimpleGeneratorController) fxmlLoader.getController();
-            System.out.println(sgc);
+            //connect generator to main
+            sgc.setMainController(mc);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -46,10 +47,5 @@ public class SimpleGenerator{
     
     public void show(){
         stage.show();
-    }
-  
-    public void init(MainViewController aThis) {
-        sgc.init(aThis);
-
     }
 }
