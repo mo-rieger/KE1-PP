@@ -32,8 +32,16 @@
    <center>
       <ScrollPane BorderPane.alignment="CENTER">
          <content>
-            <Canvas fx:id="canvas" height="200.0" width="500.0" />
+            <Canvas fx:id="canvas" height="500.0" width="500.0" />
          </content>
       </ScrollPane>
    </center>
+   <bottom>
+       <Separator />
+            <Text fx:id="state" strokeType="OUTSIDE" strokeWidth="0.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+   </bottom>
 </BorderPane>

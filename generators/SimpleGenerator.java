@@ -18,15 +18,15 @@ import ke1_rieger_moritz_fx.MainViewController;
  *
  * @author Moritz Rieger
  */
-public final class SimpleGenerator extends Generator{
+public class SimpleGenerator{
     
     private MainViewController mainController;
     private SimpleGeneratorController sgc;
+    private Stage stage;
     
-    //implement Singleton Pattern
-    private static SimpleGenerator sg = null;
-    private SimpleGenerator() {
-        Stage stage = new Stage();
+    public SimpleGenerator(MainViewController mc) {
+        //create new window for generator
+        stage = new Stage();
         stage.setTitle("Simple Generator");
         
         Parent root;
@@ -34,28 +34,18 @@ public final class SimpleGenerator extends Generator{
             FXMLLoader fxmlLoader = new FXMLLoader();
             root = fxmlLoader.load(getClass().getResource("SimpleGeneratorView.fxml").openStream());
             sgc = (SimpleGeneratorController) fxmlLoader.getController();
-            System.out.println(sgc);
+            //connect generator to main
+            sgc.setMainController(mc);
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.show();         
+            stage.show();
 
         } catch (IOException ex) {
             Logger.getLogger(SimpleGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public static Generator getInstance() {
-        if(sg == null)
-            sg = new SimpleGenerator();
-        return sg;
-    }
-    
-    protected void test(){
-        System.out.println("heureka");
-    }
-    
-    public void init(MainViewController aThis) {
-        sgc.init(aThis);
-
+    public void show(){
+        stage.show();
     }
 }

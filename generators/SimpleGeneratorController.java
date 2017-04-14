@@ -12,17 +12,20 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
  *
- * @author peterorlowsky
+ * @author Moritz Rieger
  */
 public class SimpleGeneratorController implements Initializable {
     
     private MainViewController mainController;
+    private int index;
     
    @FXML
    private TextField height;
@@ -41,8 +44,9 @@ public class SimpleGeneratorController implements Initializable {
     
   @FXML
   private void handleSaveImageAction(final ActionEvent event)
-  {
-     System.out.println("save Image");
+  {   
+     mainController.saveImageWithoutDialog(index, "simple-Generator");
+     index++;
   }
   
     /**
@@ -64,26 +68,41 @@ public class SimpleGeneratorController implements Initializable {
   @FXML
   private void handleGenerateAction(final ActionEvent event)
   {
-      String h = height.getText();
-      String w = width.getText();
-      //validate numeric input
-     if(h.matches("[0-9]*") && w.matches("[0-9]*")){
+      // Form Validation
+      // RegEx that matches only integer and decimal numbers
+     if(height.getText().matches("(?:\\d*\\.)?\\d+") && width.getText().matches("(?:\\d*\\.)?\\d+")){
+        int h = parseInt(height.getText());
+        int w = parseInt(width.getText());
         numericWarning.setVisible(false);
-        mainController.resizeCanvas( parseInt(h), parseInt(w));
+        mainController.resizeCanvas( h, w);
+        mainController.setState("berechne");
+        generate(w, h);
+        mainController.setState("fertig");
      } else{
          numericWarning.setVisible(true);
      }
+
      
   }
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        index = 0;
     }    
-    
-    public void init(MainViewController main){
-        mainController = main;
+    /**
+     * generate image an view it on canvas in main
+     * @param w width of the image
+     * @param h height of the image
+     */
+    private void generate(int w, int h){
+        GraphicsContext gc = mainController.getGraphicsContext();
+        gc.clearRect(0, 0,  w, h);
+        gc.setFill(Color.BLUE);
+        int x = (w<h)? w : h; 
+        gc.fillOval(0, 0, x, x);
     }
-    
-    
+    //GETTER AND SETTER
+    public void setMainController(MainViewController mc){
+        mainController = mc;
+    }
 }
